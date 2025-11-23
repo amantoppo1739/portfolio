@@ -54,8 +54,8 @@ export default function Hero() {
               <Linkedin size={24} />
             </a>
             <a
-              href="mailto:amantoppo1739@gmail.com"
-              className="text-foreground/60 hover:text-foreground transition-colors"
+              href="mailto:amantoppo1739@gmail.com?subject=Portfolio%20Inquiry"
+              className="text-foreground/60 hover:text-foreground transition-colors cursor-pointer"
               aria-label="Email"
             >
               <Mail size={24} />

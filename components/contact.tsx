@@ -15,8 +15,8 @@ export default function Contact() {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
           <a
-            href="mailto:amantoppo1739@gmail.com"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 h-11 px-8 bg-foreground text-background hover:bg-foreground/90 flex items-center gap-2"
+            href="mailto:amantoppo1739@gmail.com?subject=Portfolio%20Inquiry"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 h-11 px-8 bg-foreground text-background hover:bg-foreground/90 flex items-center gap-2 cursor-pointer"
           >
             <Mail size={20} />
             Send Email
@@ -43,8 +43,8 @@ export default function Contact() {
             <Linkedin size={32} />
           </a>
           <a
-            href="mailto:amantoppo1739@gmail.com"
-            className="text-foreground/60 hover:text-foreground transition-colors"
+            href="mailto:amantoppo1739@gmail.com?subject=Portfolio%20Inquiry"
+            className="text-foreground/60 hover:text-foreground transition-colors cursor-pointer"
             aria-label="Email"
           >
             <Mail size={32} />
