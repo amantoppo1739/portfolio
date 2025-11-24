@@ -60,38 +60,55 @@ const projects: Project[] = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">
-          Featured Projects
-        </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
+    <section id="projects" className="py-16 sm:py-20">
+      <div className="section-container space-y-10">
+        <div>
+          <div className="section-heading">Featured Projects</div>
+          <p className="section-subheading">
+            Production-ready work spanning commerce, community platforms, and
+            AI-powered experiences.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <div
-              key={index}
-              className="group border border-foreground/10 rounded-lg p-6 hover:border-foreground/20 transition-all duration-300 hover:shadow-lg flex flex-col"
-            >
-              <h3 className="text-xl font-semibold mb-3">{project.title}</h3>
-              <p className="text-foreground/70 mb-4 flex-grow">{project.description}</p>
-              <div className="flex flex-wrap gap-2 mb-4">
+            <div key={index} className="surface-card flex flex-col gap-4 h-full">
+              <div>
+                <h3 className="text-xl font-semibold text-balance">
+                  {project.title}
+                </h3>
+                <p className="mt-3 text-sm text-muted">
+                  {project.description}
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, techIndex) => (
                   <span
                     key={techIndex}
-                    className="px-3 py-1 text-xs bg-foreground/10 rounded-full"
+                    className="px-3 py-1 text-xs rounded-full bg-foreground/5 text-muted-strong"
                   >
                     {tech}
                   </span>
                 ))}
               </div>
-              <div className="flex gap-3 mt-auto">
+              <div className="flex flex-col gap-3 sm:flex-row mt-auto">
                 {project.githubUrl && (
-                  <Button variant="outline" size="sm" href={project.githubUrl} className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    href={project.githubUrl}
+                    className="flex items-center gap-2 w-full justify-center"
+                  >
                     <Github size={16} />
                     Code
                   </Button>
                 )}
                 {project.liveUrl && (
-                  <Button variant="outline" size="sm" href={project.liveUrl} className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    href={project.liveUrl}
+                    className="flex items-center gap-2 w-full justify-center"
+                  >
                     <ExternalLink size={16} />
                     Live
                   </Button>

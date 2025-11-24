@@ -3,26 +3,65 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --muted: #94a3b8;
+  --border: rgba(148, 163, 184, 0.2);
+  --text-muted-strong: rgba(15, 23, 42, 0.85);
+  --text-muted: rgba(15, 23, 42, 0.7);
+  --text-muted-soft: rgba(15, 23, 42, 0.6);
+  --text-muted-subtle: rgba(15, 23, 42, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #020617;
+    --foreground: #e2e8f0;
+    --muted: #94a3b8;
+    --border: rgba(148, 163, 184, 0.2);
+    --text-muted-strong: rgba(226, 232, 240, 0.9);
+    --text-muted: rgba(226, 232, 240, 0.75);
+    --text-muted-soft: rgba(226, 232, 240, 0.6);
+    --text-muted-subtle: rgba(226, 232, 240, 0.45);
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  body {
+    color: var(--foreground);
+    background: radial-gradient(
+        circle at top,
+        rgba(59, 130, 246, 0.08),
+        transparent 45%
+      ),
+      radial-gradient(circle at bottom, rgba(99, 102, 241, 0.1), transparent 50%),
+      var(--background);
+    font-family: "Inter", "SF Pro Display", "Segoe UI", system-ui, -apple-system,
+      sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .text-muted-strong {
+    color: var(--text-muted-strong);
+  }
+
+  .text-muted {
+    color: var(--text-muted);
+  }
+
+  .text-muted-soft {
+    color: var(--text-muted-soft);
+  }
+
+  .text-muted-subtle {
+    color: var(--text-muted-subtle);
   }
 }
 
@@ -39,5 +78,23 @@ body {
 
 .animate-fade-in {
   animation: fade-in 0.8s ease-out;
+}
+
+@layer components {
+  .section-container {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-heading {
+    @apply text-3xl sm:text-4xl font-bold text-center text-balance tracking-tight;
+  }
+
+  .section-subheading {
+    @apply mt-3 text-base sm:text-lg text-center text-muted max-w-2xl mx-auto;
+  }
+
+  .surface-card {
+    @apply rounded-3xl border border-[var(--border)] bg-white/80 dark:bg-slate-900/80 p-6 shadow-sm ring-1 ring-black/5 backdrop-blur;
+  }
 }
 

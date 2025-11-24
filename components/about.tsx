@@ -1,38 +1,69 @@
+const focusHighlights = [
+  "Designing end-to-end experiences that feel cohesive across breakpoints",
+  "Shipping reliable features with clean architecture and thoughtful DX",
+  "Balancing performance budgets with visually rich design systems",
+];
+
+const exploringNow = [
+  "AI-assisted workflows to accelerate prototyping",
+  "Real-time collaboration patterns for product teams",
+  "Better ways to measure product usability at scale",
+];
+
 export default function About() {
   return (
-    <section
-      id="about"
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-foreground/5"
-    >
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center">
-          About Me
-        </h2>
-        <div className="space-y-6 text-lg text-foreground/80 leading-relaxed">
+    <section id="about" className="py-16 sm:py-20">
+      <div className="section-container space-y-10">
+        <div className="space-y-4">
+          <div className="section-heading">About Me</div>
+          <p className="section-subheading">
+            A cross-functional developer who bridges product thinking with strong
+            engineering fundamentals.
+          </p>
+        </div>
+        <div className="space-y-6 text-base sm:text-lg text-muted-strong leading-relaxed">
           <p>
-            I&apos;m a passionate Full Stack Developer with expertise in both web and mobile development.
-            I specialize in building modern, scalable applications using cutting-edge technologies like
-            Next.js, TypeScript, React, Flutter, and various backend frameworks. My approach combines
-            clean code architecture with a strong focus on user experience and performance.
+            I&apos;m a Full Stack Developer crafting responsive, scalable
+            applications across web and mobile. My toolkit includes Next.js,
+            TypeScript, React, Flutter, and modern backend frameworks that allow
+            me to go from concept to deploy with confidence.
           </p>
           <p>
-            My portfolio showcases a diverse range of projects - from luxury e-commerce platforms with
-            comprehensive admin dashboards and order management systems, to community-driven applications
-            with real-time features like GPS tracking and group collaboration, to AI-powered mobile apps
-            that leverage machine learning for creative solutions. Each project reflects my commitment to
-            solving real-world problems through thoughtful design and robust engineering.
+            My projects span luxury e-commerce experiences with custom admin tooling,
+            community platforms with live tracking and collaboration, and
+            AI-powered mobile apps that help people tell richer stories. Regardless
+            of the stack, I obsess over details that make products genuinely
+            enjoyable to use on any screen size.
           </p>
-          <p>
-            I&apos;m particularly passionate about creating seamless user experiences, whether it&apos;s
-            implementing server-side rendering for optimal performance, building real-time features with
-            WebSockets, or integrating AI capabilities into mobile applications. I thrive on learning new
-            technologies and applying them to build innovative solutions that make a difference.
-          </p>
-          <p>
-            When I&apos;m not coding, you can find me exploring the latest tech trends, contributing to
-            open-source projects, or working on side projects that challenge me to grow. I&apos;m always
-            excited to collaborate on interesting projects and connect with fellow developers in the community.
-          </p>
+        </div>
+
+        <div className="grid gap-6 lg:grid-cols-2">
+          <div className="surface-card space-y-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-subtle">
+              What drives me
+            </p>
+            <ul className="space-y-3 text-sm text-muted-strong">
+              {focusHighlights.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-blue-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="surface-card space-y-4">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-muted-subtle">
+              Currently exploring
+            </p>
+            <ul className="space-y-3 text-sm text-muted-strong">
+              {exploringNow.map((item) => (
+                <li key={item} className="flex items-start gap-3">
+                  <span className="mt-1 h-2 w-2 rounded-full bg-purple-500" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
