@@ -6,6 +6,7 @@ const skillCategories = [
     skills: [
       "React",
       "Next.js 14",
+      "Next.js 16",
       "TypeScript",
       "Flutter",
       "Dart",
@@ -13,8 +14,10 @@ const skillCategories = [
       "HTML/CSS",
       "Responsive Design",
       "Zustand",
+      "TanStack Query",
       "Framer Motion",
       "Material 3",
+      "Recharts",
     ],
   },
   {
@@ -23,14 +26,19 @@ const skillCategories = [
     skills: [
       "Node.js",
       "Express.js",
+      "Laravel 12",
+      "PHP",
       "Next.js API Routes",
       "PostgreSQL",
+      "MySQL",
       "MongoDB",
       "Supabase",
       "Prisma ORM",
       "Mongoose",
+      "Eloquent ORM",
       "REST APIs",
       "Socket.io",
+      "Laravel Sanctum",
     ],
   },
   {
@@ -39,6 +47,7 @@ const skillCategories = [
     skills: [
       "Git",
       "Vercel",
+      "Railway",
       "Cloudinary",
       "Resend",
       "Neon",
