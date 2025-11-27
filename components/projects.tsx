@@ -56,6 +56,23 @@ const projects: Project[] = [
     ],
     githubUrl: "https://github.com/amantoppo1739/CaptionCraft",
   },
+  {
+    title: "Leadlink - Lead Management System (CRM)",
+    description:
+      "A comprehensive, production-ready CRM system with full-stack architecture. Features lead management with Kanban board, automated lead scoring, team performance analytics with interactive charts, role-based access control, CSV/Excel import/export, and real-time activity tracking.",
+    technologies: [
+      "Laravel 12",
+      "Next.js 16",
+      "React 19",
+      "MySQL",
+      "TailwindCSS",
+      "Recharts",
+      "Zustand",
+      "TanStack Query",
+    ],
+    githubUrl: "https://github.com/amantoppo1739",
+    liveUrl: "https://sales-lead-management-system.vercel.app/",
+  },
 ];
 
 export default function Projects() {

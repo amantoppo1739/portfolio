@@ -41,7 +41,7 @@ export default function Hero() {
                 Hello, I&apos;m
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
-                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-500 bg-clip-text text-transparent">
+                <span className="text-black dark:text-white">
                   Aman Toppo
                 </span>
               </h1>
