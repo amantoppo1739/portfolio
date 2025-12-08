@@ -1,6 +1,12 @@
 "use client";
 
-import { Mail, Github, Linkedin } from "lucide-react";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Phone,
+  MessageCircle,
+} from "lucide-react";
 
 const contactMethods = [
   {
@@ -8,6 +14,18 @@ const contactMethods = [
     value: "amantoppo1739@gmail.com",
     href: "mailto:amantoppo1739@gmail.com?subject=Portfolio%20Inquiry",
     icon: Mail,
+  },
+  {
+    label: "Phone",
+    value: "+916002807871",
+    href: "tel:+916002807871",
+    icon: Phone,
+  },
+  {
+    label: "WhatsApp",
+    value: "+916002807871",
+    href: "https://wa.me/916002807871",
+    icon: MessageCircle,
   },
   {
     label: "GitHub",
@@ -22,6 +40,10 @@ const contactMethods = [
     icon: Linkedin,
   },
 ];
+
+const formspreeAction =
+  process.env.NEXT_PUBLIC_FORMSPREE_ACTION ||
+  "https://formspree.io/f/yourFormId";
 
 export default function Contact() {
   return (
@@ -57,18 +79,103 @@ export default function Contact() {
           ))}
         </div>
 
-        <div className="surface-card text-center space-y-4">
-          <h3 className="text-2xl font-semibold">Tell me about your idea</h3>
-          <p className="text-sm text-muted">
-            Share some context about your product, timeline, or the challenge
-            you&apos;re solving. I usually respond within a day.
-          </p>
-          <a
-            href="mailto:amantoppo1739@gmail.com?subject=Portfolio%20Inquiry"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 h-11 px-8 bg-foreground text-background hover:bg-foreground/90"
+        <div className="surface-card space-y-6">
+          <div className="space-y-2 text-center">
+            <h3 className="text-2xl font-semibold">Tell me about your idea</h3>
+            <p className="text-sm text-muted">
+              Share some context about your product, timeline, or the challenge
+              you&apos;re solving. I usually respond within a day.
+            </p>
+          </div>
+
+          <form
+            action={formspreeAction}
+            method="POST"
+            className="grid gap-4 sm:grid-cols-2"
           >
-            Start a conversation
-          </a>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-muted-soft">
+                Name
+              </label>
+              <input
+                required
+                type="text"
+                name="name"
+                placeholder="Your name"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-muted-soft">
+                Email
+              </label>
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-muted-soft">
+                Contact number
+              </label>
+              <input
+                type="tel"
+                name="phone"
+                placeholder="+91 00000 00000"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+              />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="block text-sm font-medium text-muted-soft">
+                Project details
+              </label>
+              <textarea
+                required
+                name="message"
+                placeholder="What are you building? Desired timeline? Budget range?"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+                rows={4}
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-muted-soft">
+                Company
+              </label>
+              <input
+                type="text"
+                name="company"
+                placeholder="Company or organization (optional)"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+              />
+            </div>
+            <div className="sm:col-span-1">
+              <label className="block text-sm font-medium text-muted-soft">
+                Address
+              </label>
+              <input
+                type="text"
+                name="address"
+                placeholder="City, country"
+                className="mt-2 w-full rounded-md border border-foreground/10 bg-background px-4 py-3 text-sm focus:border-foreground/30 focus:outline-none"
+              />
+            </div>
+            <input type="hidden" name="_subject" value="Portfolio Inquiry" />
+            <div className="sm:col-span-2 flex flex-wrap items-center gap-3">
+              <button
+                type="submit"
+                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 h-11 px-8 bg-foreground text-background hover:bg-foreground/90"
+              >
+                Send message
+              </button>
+              <p className="text-xs text-muted">
+                I&apos;ll reply within a day. You can also call/WhatsApp at
+                {" +916002807871."}
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
