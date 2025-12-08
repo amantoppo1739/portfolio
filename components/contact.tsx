@@ -41,9 +41,8 @@ const contactMethods = [
   },
 ];
 
-const formspreeAction =
-  process.env.NEXT_PUBLIC_FORMSPREE_ACTION ||
-  "https://formspree.io/f/yourFormId";
+const formspreeAction = process.env.NEXT_PUBLIC_FORMSPREE_ACTION;
+const isFormspreeConfigured = Boolean(formspreeAction);
 
 export default function Contact() {
   return (
@@ -89,7 +88,7 @@ export default function Contact() {
           </div>
 
           <form
-            action={formspreeAction}
+            action={isFormspreeConfigured ? formspreeAction : undefined}
             method="POST"
             className="grid gap-4 sm:grid-cols-2"
           >
@@ -166,15 +165,25 @@ export default function Contact() {
             <div className="sm:col-span-2 flex flex-wrap items-center gap-3">
               <button
                 type="submit"
+                disabled={!isFormspreeConfigured}
                 className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 h-11 px-8 bg-foreground text-background hover:bg-foreground/90"
               >
-                Send message
+                {isFormspreeConfigured
+                  ? "Send message"
+                  : "Configure Formspree to send"}
               </button>
               <p className="text-xs text-muted">
                 I&apos;ll reply within a day. You can also call/WhatsApp at
                 {" +916002807871."}
               </p>
             </div>
+
+            {!isFormspreeConfigured && (
+              <div className="sm:col-span-2 text-xs text-amber-500">
+                Set NEXT_PUBLIC_FORMSPREE_ACTION in .env.local to enable this
+                form. Until then, the submit button stays disabled.
+              </div>
+            )}
           </form>
         </div>
       </div>
