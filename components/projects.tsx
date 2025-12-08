@@ -74,7 +74,7 @@ const projects: Project[] = [
     liveUrl: "https://sales-lead-management-system.vercel.app/",
   },
   {
-    title: "Metro Hospital & Research Centre Website",
+    title: "Hospital Website",
     description:
       "A modern healthcare website for Metro Hospital & Research Centre, featuring services, doctor directory, appointment booking, emergency information, news/updates, and responsive design tailored for patients and visitors.",
     technologies: [
@@ -83,7 +83,6 @@ const projects: Project[] = [
       "TailwindCSS",
       "Lucide Icons",
     ],
-    githubUrl: "https://github.com/amantoppo1739/Hospital-website",
     liveUrl: "https://hospital-website-red.vercel.app/",
   },
 ];
