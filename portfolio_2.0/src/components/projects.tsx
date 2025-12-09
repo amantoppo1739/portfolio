@@ -1,0 +1,269 @@
+"use client";
+
+import { useRef } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
+import { Button } from "./ui/button";
+
+interface Project {
+  title: string;
+  subtitle: string;
+  description: string;
+  technologies: string[];
+  githubUrl?: string;
+  liveUrl?: string;
+  gradient: string;
+  accentColor: string;
+  image?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "Leadlink",
+    subtitle: "Enterprise CRM Platform",
+    description:
+      "Custom CRM handling 10k+ leads monthly with real-time syncing. Laravel backend + React dashboard featuring automated scoring, Kanban pipeline, and bulk CSV imports. Streamlined workflows reducing data entry time for sales teams.",
+    technologies: ["React.js", "Laravel", "MySQL", "RESTful APIs"],
+    githubUrl: "https://github.com/amantoppo1739/Sales-Lead-Management-System",
+    liveUrl: "https://sales-lead-management-system.vercel.app/",
+    gradient: "from-[#1e3a8a] via-[#1e40af] to-[#3730a3]",
+    accentColor: "#60a5fa",
+    image: "/projects/leadlink.png",
+  },
+  {
+    title: "NEK Brand",
+    subtitle: "Luxury E-Commerce",
+    description:
+      "Premium storefront handling real transactions with zero downtime since launch. Deployed with Next.js 14 (edge-cached via Vercel) for instant page loads, Prisma ORM for type-safe queries, and an admin dashboard for inventory management. Architected for luxury fashion retail.",
+    technologies: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    githubUrl: "https://github.com/amantoppo1739/E-commerce-NEK-Brand",
+    liveUrl: "https://e-commerce-nek-brand.vercel.app",
+    gradient: "from-[#581c87] via-[#6b21a8] to-[#7c3aed]",
+    accentColor: "#c084fc",
+    image: "/projects/nek-brand.png",
+  },
+  {
+    title: "Adventura",
+    subtitle: "Real-time Rider Platform",
+    description:
+      "Live GPS tracking for 50+ active riders with zero downtime. Real-time trip planning powered by Socket.io for group chat, expense splits, and SOS alerts. Mapbox navigation with offline-first architecture for reliability on the road.",
+    technologies: ["Next.js", "Socket.io", "MongoDB", "Mapbox"],
+    githubUrl: "https://github.com/amantoppo1739",
+    gradient: "from-[#134e4a] via-[#0f766e] to-[#14b8a6]",
+    accentColor: "#5eead4",
+  },
+  {
+    title: "CaptionCraft",
+    subtitle: "AI Caption Generator",
+    description:
+      "AI-powered Flutter mobile app generating contextual social media captions via Google Gemini API. Dual-tone style system with emotional intelligence and Supabase backend for caption history and user preferences. Built for content creators.",
+    technologies: ["Flutter", "Gemini AI", "Supabase", "Dart"],
+    githubUrl: "https://github.com/amantoppo1739/CaptionCraft",
+    gradient: "from-[#713f12] via-[#92400e] to-[#ea580c]",
+    accentColor: "#fb923c",
+    image: "/projects/captioncraft.png",
+  },
+];
+
+function StickyProjectCard({ project, index }: { project: Project; index: number }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{
+        scale,
+        opacity,
+        top: `${index * 20}px`,
+      }}
+      className="sticky h-[85vh] md:h-[80vh]"
+    >
+      <div
+        className={`relative h-full w-full rounded-3xl overflow-hidden bg-gradient-to-br ${project.gradient} p-8 md:p-12 lg:p-16 shadow-2xl`}
+      >
+        {/* Ambient Noise Texture */}
+        <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]" />
+
+        <div className="relative h-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
+          {/* Left: Content */}
+          <div className="flex-1 space-y-6 text-white text-center lg:text-left">
+            <div className="space-y-2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+                <span className="text-sm font-semibold uppercase tracking-wider opacity-70">
+                  {project.subtitle}
+                </span>
+              </motion.div>
+
+              <motion.h3
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                viewport={{ once: true }}
+                className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
+              >
+                {project.title}
+              </motion.h3>
+            </div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-base sm:text-lg text-white/80 leading-relaxed max-w-xl"
+            >
+              {project.description}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap gap-2 justify-center lg:justify-start"
+            >
+              {project.technologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+                >
+                  {tech}
+                </span>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start"
+            >
+              {project.liveUrl && (
+                <Button
+                  href={project.liveUrl}
+                  className="bg-white text-black hover:bg-white/90 font-semibold"
+                  size="lg"
+                >
+                  View Live
+                  <ArrowUpRight size={18} className="ml-2" />
+                </Button>
+              )}
+              {project.githubUrl && (
+                <Button
+                  href={project.githubUrl}
+                  variant="outline"
+                  className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm"
+                  size="lg"
+                >
+                  <Github size={18} className="mr-2" />
+                  Source Code
+                </Button>
+              )}
+            </motion.div>
+          </div>
+
+          {/* Right: Floating Screenshot */}
+          <motion.div
+            initial={{ opacity: 0, x: 50, rotate: -5 }}
+            whileInView={{ opacity: 1, x: 0, rotate: -3 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            viewport={{ once: true }}
+            className={`flex-1 relative hidden md:block ${
+              project.title === "CaptionCraft" ? "max-w-xs" : "max-w-lg lg:max-w-xl"
+            }`}
+          >
+            <div
+              className={`relative overflow-hidden shadow-2xl border-4 border-white/30 ${
+                project.title === "CaptionCraft" ? "rounded-[2.5rem]" : "rounded-2xl"
+              }`}
+              style={{
+                transform: "perspective(1000px) rotateY(-5deg) rotateX(2deg)",
+              }}
+            >
+              {project.image ? (
+                /* Real Screenshot */
+                <div
+                  className={`relative bg-black ${
+                    project.title === "CaptionCraft" ? "aspect-[9/19.5]" : "aspect-[16/9]"
+                  }`}
+                >
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} screenshot`}
+                    fill
+                    className={project.title === "CaptionCraft" ? "object-cover" : "object-contain"}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    quality={100}
+                  />
+                </div>
+              ) : (
+                /* Placeholder for projects without screenshots */
+                <div className="aspect-[16/9] bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl flex items-center justify-center">
+                  <div className="text-center space-y-4 p-8">
+                    <ExternalLink size={48} className="mx-auto opacity-40" />
+                    <p className="text-sm opacity-60">Coming Soon</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Glow Effect */}
+              <div
+                className="absolute -inset-4 rounded-2xl blur-2xl opacity-30 -z-10"
+                style={{ backgroundColor: project.accentColor }}
+              />
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Card Number */}
+        <div className="absolute top-6 right-6 text-8xl sm:text-9xl font-bold text-white/5 select-none">
+          0{index + 1}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+export function Projects() {
+  return (
+    <section id="projects" className="relative py-24 bg-[var(--background)]">
+      <div className="section-container mb-16">
+        <div className="space-y-3 text-center">
+          <div className="eyebrow mx-auto">Featured Work</div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-center text-balance">
+            Case Studies
+          </h2>
+          <p className="section-subheading">
+            Production systems serving real users with measurable impact.
+          </p>
+        </div>
+      </div>
+
+      {/* Sticky Cards Container */}
+      <div className="relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+          {projects.map((project, index) => (
+            <StickyProjectCard key={project.title} project={project} index={index} />
+          ))}
+        </div>
+
+        {/* Bottom spacing */}
+        <div className="h-24" />
+      </div>
+    </section>
+  );
+}
