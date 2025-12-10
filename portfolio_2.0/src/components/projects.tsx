@@ -59,6 +59,7 @@ const projects: Project[] = [
     description:
       "Comprehensive hospital website serving 50,000+ patients with 24/7 emergency services. Features department listings, doctor profiles, online appointments, patient portal, and health news. Built with modern web technologies for optimal performance and user experience.",
     technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/amantoppo1739/Hospital-website",
     liveUrl: "https://hospital-website-red.vercel.app/",
     gradient: "from-[#dc2626] via-[#991b1b] to-[#7f1d1d]",
     accentColor: "#f87171",
