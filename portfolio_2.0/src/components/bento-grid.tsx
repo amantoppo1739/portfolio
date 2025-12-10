@@ -14,7 +14,7 @@ export function BentoGrid() {
       <div className="section-container relative z-10">
         <div className="space-y-3 text-center mb-12">
           <div className="eyebrow mx-auto">About Me</div>
-          <h2 className="section-heading">Product Engineer</h2>
+          <h2 className="section-heading">Software Engineer</h2>
           <p className="section-subheading">
             Building complete solutions, not just features.
           </p>
