@@ -18,29 +18,17 @@ export function Hero() {
       <div className="section-container relative grid gap-12 lg:grid-cols-[1.05fr_minmax(0,0.95fr)] items-center">
         <div className="space-y-8">
           <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="eyebrow w-fit"
-          >
-            Building Digital Experiences
-          </motion.div>
-
-          <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.5 }}
             className="space-y-4 text-balance"
           >
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-muted-subtle">
-              Aman Toppo · Full Stack Engineer
+              Aman Toppo
             </p>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
               I build commerce engines and community platforms.
             </h1>
-            <p className="text-lg text-muted max-w-2xl">
-              Full Stack Engineer focused on speed and scalability. Specialized in MERN stack with 50% faster API performance and real-time systems for web and mobile.
-            </p>
           </motion.div>
 
           <motion.div
