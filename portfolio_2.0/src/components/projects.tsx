@@ -43,15 +43,26 @@ const projects: Project[] = [
     accentColor: "#c084fc",
     image: "/projects/nek-brand.png",
   },
+  // {
+  //   title: "Adventura",
+  //   subtitle: "Real-time Rider Platform",
+  //   description:
+  //     "Live GPS tracking for 50+ active riders with zero downtime. Real-time trip planning powered by Socket.io for group chat, expense splits, and SOS alerts. Mapbox navigation with offline-first architecture for reliability on the road.",
+  //   technologies: ["Next.js", "Socket.io", "MongoDB", "Mapbox"],
+  //   githubUrl: "https://github.com/amantoppo1739",
+  //   gradient: "from-[#134e4a] via-[#0f766e] to-[#14b8a6]",
+  //   accentColor: "#5eead4",
+  // },
   {
-    title: "Adventura",
-    subtitle: "Real-time Rider Platform",
+    title: "Metro Hospital",
+    subtitle: "Healthcare Management Platform",
     description:
-      "Live GPS tracking for 50+ active riders with zero downtime. Real-time trip planning powered by Socket.io for group chat, expense splits, and SOS alerts. Mapbox navigation with offline-first architecture for reliability on the road.",
-    technologies: ["Next.js", "Socket.io", "MongoDB", "Mapbox"],
-    githubUrl: "https://github.com/amantoppo1739",
-    gradient: "from-[#134e4a] via-[#0f766e] to-[#14b8a6]",
-    accentColor: "#5eead4",
+      "Comprehensive hospital website serving 50,000+ patients with 24/7 emergency services. Features department listings, doctor profiles, online appointments, patient portal, and health news. Built with modern web technologies for optimal performance and user experience.",
+    technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS"],
+    liveUrl: "https://hospital-website-red.vercel.app/",
+    gradient: "from-[#dc2626] via-[#991b1b] to-[#7f1d1d]",
+    accentColor: "#f87171",
+    image: "/projects/metro-hospital.png",
   },
   {
     title: "CaptionCraft",
