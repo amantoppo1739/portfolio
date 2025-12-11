@@ -20,6 +20,18 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Synta",
+    subtitle: "Personal AI Programming Tutor",
+    description:
+      "AI tutor delivering curated videos, streaming chat, and on-spot quizzes. Built with Next.js 15 App Router, Vercel AI SDK on Groq Llama 3.3, Drizzle ORM on Neon, and NextAuth v5 for secure sessions. Linear-style UI with dark mode and shadcn components.",
+    technologies: ["Next.js 15", "TypeScript", "Drizzle ORM", "PostgreSQL", "Vercel AI SDK", "NextAuth"],
+    githubUrl: "https://github.com/amantoppo1739/learning-platform",
+    liveUrl: "https://synta.vercel.app",
+    gradient: "from-[#0f172a] via-[#0ea5e9] to-[#22c55e]",
+    accentColor: "#22d3ee",
+    image: "/projects/synta.png",
+  },
+  {
     title: "Leadlink",
     subtitle: "Enterprise CRM Platform",
     description:
@@ -63,7 +75,7 @@ const projects: Project[] = [
     liveUrl: "https://hospital-website-red.vercel.app/",
     gradient: "from-[#dc2626] via-[#991b1b] to-[#7f1d1d]",
     accentColor: "#f87171",
-    image: "/projects/metro-hospital.png",
+    image: "/projects/metro.png",
   },
   {
     title: "CaptionCraft",
