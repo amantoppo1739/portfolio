@@ -32,6 +32,16 @@ const projects: Project[] = [
     image: "/projects/synta.png",
   },
   {
+    title: "ByteTube",
+    subtitle: "Video Hosting Backend API",
+    description:
+      "Comprehensive RESTful backend API for a YouTube-like video platform with 52 endpoints. Features JWT authentication, video upload to Cloudinary, likes, comments, subscriptions, playlists, and analytics. Built with Express.js, MongoDB, and Mongoose. Includes rate limiting, security headers, and comprehensive error handling.",
+    technologies: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "Cloudinary"],
+    githubUrl: "https://github.com/amantoppo1739/ByteTube-backend",
+    gradient: "from-[#dc2626] via-[#b91c1c] to-[#991b1b]",
+    accentColor: "#ef4444",
+  },
+  {
     title: "Leadlink",
     subtitle: "Enterprise CRM Platform",
     description:
