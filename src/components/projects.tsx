@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight } from "lucide-react";
 import { Button } from "./ui/button";
 
@@ -102,13 +102,34 @@ const projects: Project[] = [
 
 function StickyProjectCard({ project, index }: { project: Project; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: cardRef,
-    offset: ["start end", "start start"],
+    offset: ["start 0.9", "start 0.1"],
   });
 
-  const scale = useTransform(scrollYProgress, [0, 1], [0.9, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  // Simplified transforms for mobile - less intensive calculations
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion || isMobile ? [1, 1] : [0.95, 1]
+  );
+  const opacity = useTransform(
+    scrollYProgress,
+    [0, 1],
+    prefersReducedMotion || isMobile ? [1, 1] : [0.7, 1]
+  );
 
   return (
     <motion.div
@@ -116,48 +137,54 @@ function StickyProjectCard({ project, index }: { project: Project; index: number
       style={{
         scale,
         opacity,
-        top: `${index * 20}px`,
+        top: index > 0 ? `${index * 20}px` : 0,
+        willChange: isMobile ? "auto" : "transform, opacity",
       }}
       className="sticky h-[85vh] md:h-[80vh]"
     >
       <div
-        className={`relative h-full w-full rounded-3xl overflow-hidden bg-gradient-to-br ${project.gradient} p-8 md:p-12 lg:p-16 shadow-2xl`}
+        className={`relative h-full w-full rounded-3xl overflow-hidden bg-gradient-to-br ${project.gradient} p-6 pb-8 md:p-12 lg:p-16 shadow-2xl`}
+        style={{ 
+          transform: "translate3d(0, 0, 0)", 
+          willChange: isMobile ? "auto" : "transform",
+          contain: "layout style paint"
+        }}
       >
-        {/* Ambient Noise Texture */}
-        <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')]" />
+        {/* Ambient Noise Texture - Hidden on mobile for performance */}
+        <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4=')] hidden md:block" />
 
-        <div className="relative h-full flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-16">
+        <div className="relative h-full flex flex-col lg:flex-row items-start md:items-center justify-between gap-4 md:gap-8 lg:gap-16">
           {/* Left: Content */}
-          <div className="flex-1 space-y-6 text-white text-center lg:text-left">
+          <div className="flex-1 space-y-3 md:space-y-6 text-white text-center lg:text-left w-full">
             <div className="space-y-2">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                viewport={{ once: true }}
-              >
-                <span className="text-sm font-semibold uppercase tracking-wider opacity-70">
-                  {project.subtitle}
-                </span>
-              </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: isMobile ? 0 : 0.1, duration: isMobile ? 0.2 : 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              <span className="text-sm font-semibold uppercase tracking-wider opacity-70">
+                {project.subtitle}
+              </span>
+            </motion.div>
 
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                viewport={{ once: true }}
-                className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight"
-              >
-                {project.title}
-              </motion.h3>
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: isMobile ? 0 : 0.15, duration: isMobile ? 0.2 : 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight"
+            >
+              {project.title}
+            </motion.h3>
             </div>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              viewport={{ once: true }}
-              className="text-base sm:text-lg text-white/80 leading-relaxed max-w-xl"
+              transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0.2 : 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed max-w-xl"
             >
               {project.description}
             </motion.p>
@@ -165,14 +192,15 @@ function StickyProjectCard({ project, index }: { project: Project; index: number
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              viewport={{ once: true }}
+              transition={{ delay: isMobile ? 0 : 0.25, duration: isMobile ? 0.2 : 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
               className="flex flex-wrap gap-2 justify-center lg:justify-start"
             >
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+                  className="px-3 py-1 text-xs font-medium rounded-full bg-white/10 backdrop-blur-sm md:backdrop-blur-sm border border-white/20"
+                  style={{ willChange: "auto" }}
                 >
                   {tech}
                 </span>
@@ -182,9 +210,9 @@ function StickyProjectCard({ project, index }: { project: Project; index: number
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              viewport={{ once: true }}
-              className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start"
+              transition={{ delay: isMobile ? 0 : 0.3, duration: isMobile ? 0.2 : 0.3, ease: "easeOut" }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="flex flex-wrap gap-3 md:gap-4 pt-2 md:pt-4 justify-center lg:justify-start"
             >
               {project.liveUrl && (
                 <Button
@@ -214,8 +242,9 @@ function StickyProjectCard({ project, index }: { project: Project; index: number
           <motion.div
             initial={{ opacity: 0, x: 50, rotate: -5 }}
             whileInView={{ opacity: 1, x: 0, rotate: -3 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            viewport={{ once: true }}
+            transition={{ delay: isMobile ? 0 : 0.2, duration: isMobile ? 0.3 : 0.4, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+            style={{ willChange: "transform" }}
             className={`flex-1 relative hidden md:block ${
               project.title === "CaptionCraft" ? "max-w-xs" : "max-w-lg lg:max-w-xl"
             }`}
@@ -289,7 +318,7 @@ export function Projects() {
 
       {/* Sticky Cards Container */}
       <div className="relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 md:space-y-12">
           {projects.map((project, index) => (
             <StickyProjectCard key={project.title} project={project} index={index} />
           ))}
