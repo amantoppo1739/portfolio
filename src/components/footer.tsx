@@ -41,28 +41,28 @@ export function Footer() {
         {/* Main CTA */}
         <div className="text-center space-y-8 mb-16">
           <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-balance max-w-4xl mx-auto">
-            Let&apos;s build something exceptional
+            Let's connect and create something impactful
           </h2>
           <p className="text-lg sm:text-xl text-muted max-w-2xl mx-auto">
-            Available for freelance work, remote opportunities, and exciting collaborations.
+            Open to freelance projects, remote work, and innovative collaborations.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button
               size="lg"
-              href="mailto:amantoppo1739@gmail.com?subject=Let's Work Together"
+              href="mailto:amantoppo1739@gmail.com?subject=Let%27s%20Work%20Together"
               className="gradient-border bg-foreground text-background px-8 text-base"
             >
               <Mail className="mr-2" size={20} />
-              Get in Touch
+              Email Me
             </Button>
             <Button
               size="lg"
               variant="outline"
-              href="https://github.com/amantoppo1739"
+              href="https://linkedin.com/in/aman-toppo-b54a43305"
               className="px-8 border-foreground/25 text-base"
             >
-              <Github className="mr-2" size={20} />
-              View GitHub
+              <Linkedin className="mr-2" size={20} />
+              Connect on LinkedIn
             </Button>
           </div>
         </div>
@@ -79,6 +79,7 @@ export function Footer() {
                 { name: "About", href: "#about" },
                 { name: "Projects", href: "#projects" },
                 { name: "Stack", href: "#stack" },
+                { name: "Contact", href: "#contact" },
               ].map((item) => (
                 <li key={item.name}>
                   <a
@@ -97,13 +98,20 @@ export function Footer() {
               Projects
             </h3>
             <ul className="space-y-3">
-              {["Leadlink CRM", "NEK Brand", "Adventura", "CaptionCraft"].map((project) => (
-                <li key={project}>
+              {[
+                { name: "Leadlink CRM", href: "https://github.com/amantoppo1739/leadlink-crm" },
+                { name: "NEK Brand", href: "https://github.com/amantoppo1739/nek-brand" },
+                { name: "Adventura", href: "https://github.com/amantoppo1739/adventura" },
+                { name: "CaptionCraft", href: "https://github.com/amantoppo1739/captioncraft" },
+              ].map((project) => (
+                <li key={project.name}>
                   <a
-                    href="#projects"
-                    className="text-muted hover:text-foreground transition-colors"
+                    href={project.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-muted hover:text-foreground transition-colors underline decoration-dashed underline-offset-2"
                   >
-                    {project}
+                    {project.name}
                   </a>
                 </li>
               ))}
@@ -115,7 +123,7 @@ export function Footer() {
               Tech Stack
             </h3>
             <ul className="space-y-3">
-              {["MERN Stack", "Next.js", "TypeScript", "Flutter"].map((tech) => (
+              {["React.js", "Node.js", "MongoDB", "Next.js", "TypeScript", "TailwindCSS", "Flutter"].map((tech) => (
                 <li key={tech}>
                   <span className="text-muted">{tech}</span>
                 </li>
@@ -139,7 +147,16 @@ export function Footer() {
                       className="flex items-center gap-2 text-muted hover:text-foreground transition-colors"
                     >
                       <Icon size={16} />
-                      {link.name}
+                      <span>
+                        {link.name === "Phone" ? (
+                          <span>
+                            {link.name}:{" "}
+                            <span className="hover:underline underline-offset-2">{link.href.replace("tel:", "")}</span>
+                          </span>
+                        ) : (
+                          link.name
+                        )}
+                      </span>
                     </a>
                   </li>
                 );
@@ -151,14 +168,10 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-soft">
-            &copy; {year} Aman Toppo. All rights reserved.
-          </p>
-          <p className="text-sm text-muted-soft">
-            Built with Next.js 16, TypeScript, TailwindCSS v4, and Framer Motion
+            &copy; {year} Aman Toppo
           </p>
         </div>
       </div>
     </footer>
   );
 }
-

@@ -81,11 +81,11 @@ export function BentoGrid() {
                   <div className="flex items-center gap-3">
                     <TrendingUp className="h-5 w-5 text-purple-500" />
                     <span className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
-                      1.5
+                      1
                     </span>
                   </div>
                   <p className="text-sm text-muted-strong font-medium">
-                    Years at Catla IT
+                    Year at Catla IT
                   </p>
                   <p className="text-xs text-muted-soft">
                     Currently a freelancer

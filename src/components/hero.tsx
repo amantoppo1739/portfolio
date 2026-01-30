@@ -88,11 +88,11 @@ export function Hero() {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="flex flex-wrap gap-2"
           >
-            {stackTags.map((tag) => (
+            {/* {stackTags.map((tag) => (
               <span key={tag} className="pill">
                 {tag}
               </span>
-            ))}
+            ))} */}
           </motion.div>
         </div>
 
@@ -165,16 +165,16 @@ export function Hero() {
               >
                 <div className="text-[#888888]">+-------------------+-------------------+</div>
                 <div className="text-[#888888]">
-                  | <span className="text-[#f29111]">role</span>              | <span className="text-[#f29111]">Full Stack Engineer</span> |
+                  | <span className="text-[#f29111]">role</span>              | <span className="text-[#f29111]">Full-Stack Developer</span> |
                 </div>
                 <div className="text-[#888888]">
                   | <span className="text-[#f29111]">location</span>          | <span className="text-white">Nagaon, Assam</span>     |
                 </div>
                 <div className="text-[#888888]">
-                  | <span className="text-[#f29111]">experience</span>        | <span className="text-white">1.5 years</span>         |
+                  | <span className="text-[#f29111]">experience</span>        | <span className="text-white">1 years</span>         |
                 </div>
                 <div className="text-[#888888]">
-                  | <span className="text-[#f29111]">stack</span>             | <span className="text-white">[Next.js, Flutter, Laravel]</span> |
+                  | <span className="text-[#f29111]">stack</span>             | <span className="text-white">[React.js, Node.js, MongoDB]</span> |
                 </div>
                 <div className="text-[#888888]">+-------------------+-------------------+</div>
                 <div className="text-[#00d900] mt-1">1 row in set (0.00 sec)</div>
